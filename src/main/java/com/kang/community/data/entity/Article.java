@@ -1,29 +1,71 @@
 package com.kang.community.data.entity;
 
+import java.time.Instant;
+
 public class Article {
 
-    private String name;
-    private String description;
+    private int id;
+    private int memberId;
+    private int boardId;
+    private String title;
+    private String content;
+    private Instant createdAt;
+    private Instant lastModifiedAt;
 
-    public Article(String name, String description) {
-        this.name = name;
-        this.description = description;
+    public int getId() {
+        return id;
     }
 
-    public String getName() {
-        return name;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getMemberId() {
+        return memberId;
     }
 
-    public String getDescription() {
-        return description;
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public int getBoardId() {
+        return boardId;
+    }
+
+    public void setBoardId(int boardId) {
+        this.boardId = boardId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Instant getLastModifiedAt() {
+        return lastModifiedAt;
+    }
+
+    public void setLastModifiedAt(Instant lastModifiedAt) {
+        this.lastModifiedAt = lastModifiedAt;
     }
 
 }
