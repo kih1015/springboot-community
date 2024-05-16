@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.kang.community.controller;
 
+import com.kang.community.data.entity.Article;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,7 @@ public class ArticleController {
     private int idCount = 1;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Article> getArticleById(@PathVariable int id) {
+    public ResponseEntity<Article> readArticleById(@PathVariable int id) {
         if (articleMap.containsKey(id)) {
             return ResponseEntity.ok(articleMap.get(id));
         } else {

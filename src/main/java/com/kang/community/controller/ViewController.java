@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.kang.community.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,17 +10,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-public class HelloController {
+public class ViewController {
 
     @GetMapping("/introduce")
-    public String hello(@RequestParam(name = "name", required = false, defaultValue = "강인화") String name, Model model) {
+    public String getHello(@RequestParam(name = "name", required = false, defaultValue = "강인화") String name, Model model) {
         model.addAttribute("name", name);
         return "hello";
     }
 
     @ResponseBody
     @GetMapping("/json")
-    public Map<String, Object> json() {
+    public Map<String, Object> getJson() {
         Map<String, Object> user = new HashMap<>();
         user.put("name", "최준호");
         user.put("age", 25);

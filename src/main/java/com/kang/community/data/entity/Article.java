@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.kang.community.data.entity;
 
 public class Article {
 
