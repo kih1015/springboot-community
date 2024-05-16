@@ -10,7 +10,7 @@ public class Article {
     private String title;
     private String content;
     private Instant createdAt;
-    private Instant lastModifiedAt;
+    private Instant UpdatedAt;
 
     public int getId() {
         return id;
@@ -60,12 +60,11 @@ public class Article {
         this.createdAt = createdAt;
     }
 
-    public Instant getLastModifiedAt() {
-        return lastModifiedAt;
+    public Instant getUpdatedAt() {
+        return UpdatedAt;
     }
 
-    public void setLastModifiedAt(Instant lastModifiedAt) {
-        this.lastModifiedAt = lastModifiedAt;
+    public void setUpdatedAt(Instant updatedAt) {
+        UpdatedAt = updatedAt;
     }
-
 }
