@@ -11,6 +11,11 @@ public class Article {
     private String content;
     private Instant createdAt;
     private Instant UpdatedAt;
+    private static int idCnt = 1;
+
+    public Article() {
+        id = idCnt++;
+    }
 
     public int getId() {
         return id;

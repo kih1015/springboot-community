@@ -4,6 +4,11 @@ public class Board {
 
     int id;
     String name;
+    private static int idCnt = 1;
+
+    public Board() {
+        id = idCnt++;
+    }
 
     public int getId() {
         return id;

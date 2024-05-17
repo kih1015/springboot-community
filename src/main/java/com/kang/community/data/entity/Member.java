@@ -6,6 +6,11 @@ public class Member {
     private String name;
     private String email;
     private String password;
+    private static int idCnt = 1;
+
+    public Member() {
+        id = idCnt++;
+    }
 
     public int getId() {
         return id;
