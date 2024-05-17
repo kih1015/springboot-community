@@ -19,7 +19,7 @@ public class OthersController {
         communityService.createMember(dto);
     }
 
-    @PostMapping("/Boards")
+    @PostMapping("/boards")
     public void createBoard(@RequestBody String name) {
         communityService.createBoard(name);
     }
