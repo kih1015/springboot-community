@@ -1,5 +1,7 @@
 package com.kang.community.controller;
 
+import com.kang.community.service.CommunityService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +14,23 @@ import java.util.Map;
 @Controller
 public class ViewController {
 
+    private final CommunityService communityService;
+
+    @Autowired
+    public ViewController(CommunityService communityService) {
+        this.communityService = communityService;
+    }
+
     @GetMapping("/introduce")
     public String getHello(@RequestParam(name = "name", required = false, defaultValue = "강인화") String name, Model model) {
         model.addAttribute("name", name);
         return "hello";
+    }
+
+    @GetMapping("/posts")
+    public String getPosts(Model model) {
+        model.addAttribute("postsMap", communityService.readArticlesOnBoard());
+        return "posts";
     }
 
     @ResponseBody
