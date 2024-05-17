@@ -22,7 +22,7 @@ public class MemberRepository {
         if (boardMap.containsKey(id)) {
             return boardMap.get(id);
         } else {
-            throw new Exception();
+            throw new RuntimeException();
         }
     }
 
@@ -35,7 +35,7 @@ public class MemberRepository {
         if (boardMap.containsKey(id)) {
             boardMap.remove(id);
         } else {
-            throw new Exception();
+            throw new RuntimeException();
         }
     }
 

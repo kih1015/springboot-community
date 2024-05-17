@@ -18,11 +18,11 @@ public class ArticleRepository {
         return new ArrayList<>(articleMap.values());
     }
 
-    public Article readById(int id) throws Exception {
+    public Article readById(int id) {
         if (articleMap.containsKey(id)) {
             return articleMap.get(id);
         } else {
-            throw new Exception();
+            throw new RuntimeException();
         }
     }
 
@@ -31,29 +31,29 @@ public class ArticleRepository {
         return articleMap.put(idCount++, article);
     }
 
-    public Article updateTitle(int id, String title) throws Exception {
+    public Article updateTitleById(int id, String title) {
         if (articleMap.containsKey(id)) {
             articleMap.get(id).setTitle(title);
             return articleMap.get(id);
         } else {
-            throw new Exception();
+            throw new RuntimeException();
         }
     }
 
-    public Article updateContent(int id, String content) throws Exception {
+    public Article updateContentById(int id, String content) {
         if (articleMap.containsKey(id)) {
             articleMap.get(id).setContent(content);
             return articleMap.get(id);
         } else {
-            throw new Exception();
+            throw new RuntimeException();
         }
     }
 
-    public void delete(int id) throws Exception {
+    public void delete(int id) {
         if (articleMap.containsKey(id)) {
             articleMap.remove(id);
         } else {
-            throw new Exception();
+            throw new RuntimeException();
         }
     }
 
