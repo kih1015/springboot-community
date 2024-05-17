@@ -80,6 +80,7 @@ public class CommunityService {
         article.setContent(dto.getContent());
         article.setCreatedAt(Instant.now());
         article.setUpdatedAt(null);
+        articleRepository.create(article);
     }
 
     public void updateArticleById(int id, String title, String content) {
@@ -100,11 +101,13 @@ public class CommunityService {
         member.setEmail(dto.getEmail());
         member.setName(dto.getName());
         member.setPassword(dto.getPassword());
+        memberRepository.create(member);
     }
 
     public void createBoard(String name) {
         Board board = new Board();
         board.setName(name);
+        boardRepository.create(board);
     }
 
 }
