@@ -1,54 +1,59 @@
 package com.kang.community.controller;
 
-import com.kang.community.data.entity.Article;
+import com.kang.community.data.dto.ArticleRequestDto;
+import com.kang.community.data.dto.ArticleResponseDto;
+import com.kang.community.service.CommunityService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/article")
 public class ArticleController {
 
-    private final Map<Integer, Article> articleMap = new HashMap<>();
-    private int idCount = 1;
+    private final CommunityService communityService;
+
+    public ArticleController(CommunityService communityService) {
+        this.communityService = communityService;
+    }
+
+    @GetMapping()
+    public List<ArticleResponseDto> readArticles() {
+        return communityService.readArticles();
+    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Article> readArticleById(@PathVariable int id) {
-        if (articleMap.containsKey(id)) {
-            return ResponseEntity.ok(articleMap.get(id));
-        } else {
+    public ResponseEntity<ArticleResponseDto> readArticleById(@PathVariable int id) {
+        try {
+            return ResponseEntity.ok(communityService.readArticleById(id));
+        } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
     @PostMapping
-    public ResponseEntity<Object> createArticle(@RequestBody Article article) {
-        if (article.getDescription() != null && article.getName() != null) {
-            articleMap.put(idCount++, article);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
+    public void createArticle(@RequestBody ArticleRequestDto dto) {
+        communityService.createArticle(dto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Article> updateArticleById(@PathVariable int id, @RequestBody Article article) {
-        if (articleMap.containsKey(id) && article.getDescription() != null && article.getName() != null) {
-            articleMap.put(id, article);
-            return ResponseEntity.ok(article);
-        } else {
+    public ResponseEntity<ArticleResponseDto> updateArticleById(@PathVariable int id, @RequestBody Map<String, String> map) {
+        try {
+            communityService.updateArticleById(id, map.get("title"), map.get("content"));
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteArticleById(@PathVariable int id) {
-        if (articleMap.containsKey(id)) {
-            articleMap.remove(id);
+    public ResponseEntity<ArticleResponseDto> deleteArticleById(@PathVariable int id) {
+        try {
+            communityService.deleteArticleById(id);
             return ResponseEntity.noContent().build();
-        } else {
+        } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
     }
