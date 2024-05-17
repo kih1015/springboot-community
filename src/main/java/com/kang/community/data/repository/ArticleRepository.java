@@ -3,6 +3,7 @@ package com.kang.community.data.repository;
 import com.kang.community.data.entity.Article;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,19 +30,19 @@ public class ArticleRepository {
         return articleMap.put(article.getId(), article);
     }
 
-    public Article updateTitleById(int id, String title) {
+    public void updateTitleById(int id, String title) {
         if (articleMap.containsKey(id)) {
             articleMap.get(id).setTitle(title);
-            return articleMap.get(id);
+            articleMap.get(id).setUpdatedAt(Instant.now());
         } else {
             throw new RuntimeException();
         }
     }
 
-    public Article updateContentById(int id, String content) {
+    public void updateContentById(int id, String content) {
         if (articleMap.containsKey(id)) {
             articleMap.get(id).setContent(content);
-            return articleMap.get(id);
+            articleMap.get(id).setUpdatedAt(Instant.now());
         } else {
             throw new RuntimeException();
         }
