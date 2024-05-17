@@ -25,8 +25,8 @@ public class BoardRepository {
         }
     }
 
-    public Board create(Board board) {
-        return boardMap.put(board.getId(), board);
+    public void create(Board board) {
+        boardMap.put(board.getId(), board);
     }
 
     public void delete(int id) {

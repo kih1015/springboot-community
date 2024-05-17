@@ -25,8 +25,8 @@ public class MemberRepository {
         }
     }
 
-    public Member create(Member member) {
-        return boardMap.put(member.getId(), member);
+    public void create(Member member) {
+        boardMap.put(member.getId(), member);
     }
 
     public void delete(int id) {

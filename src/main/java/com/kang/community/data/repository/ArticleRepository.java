@@ -26,8 +26,8 @@ public class ArticleRepository {
         }
     }
 
-    public Article create(Article article) {
-        return articleMap.put(article.getId(), article);
+    public void create(Article article) {
+        articleMap.put(article.getId(), article);
     }
 
     public void updateTitleById(int id, String title) {
