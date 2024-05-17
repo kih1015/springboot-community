@@ -18,7 +18,7 @@ public class MemberRepository {
         return new ArrayList<>(boardMap.values());
     }
 
-    public Member readById(int id) throws Exception {
+    public Member readById(int id) {
         if (boardMap.containsKey(id)) {
             return boardMap.get(id);
         } else {
@@ -31,7 +31,7 @@ public class MemberRepository {
         return boardMap.put(idCount++, member);
     }
 
-    public void delete(int id) throws Exception {
+    public void delete(int id) {
         if (boardMap.containsKey(id)) {
             boardMap.remove(id);
         } else {
