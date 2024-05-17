@@ -11,7 +11,6 @@ import java.util.Map;
 @Component
 public class ArticleRepository {
 
-    private int idCount = 1;
     private final Map<Integer, Article> articleMap = new HashMap<>();
 
     public List<Article> readAll() {
@@ -27,8 +26,7 @@ public class ArticleRepository {
     }
 
     public Article create(Article article) {
-        article.setId(idCount);
-        return articleMap.put(idCount++, article);
+        return articleMap.put(article.getId(), article);
     }
 
     public Article updateTitleById(int id, String title) {

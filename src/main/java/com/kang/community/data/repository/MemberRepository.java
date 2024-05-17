@@ -11,7 +11,6 @@ import java.util.Map;
 @Component
 public class MemberRepository {
 
-    private int idCount = 1;
     private final Map<Integer, Member> boardMap = new HashMap<>();
 
     public List<Member> readAll() {
@@ -27,8 +26,7 @@ public class MemberRepository {
     }
 
     public Member create(Member member) {
-        member.setId(idCount);
-        return boardMap.put(idCount++, member);
+        return boardMap.put(member.getId(), member);
     }
 
     public void delete(int id) {
