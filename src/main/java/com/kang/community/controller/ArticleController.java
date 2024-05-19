@@ -3,6 +3,7 @@ package com.kang.community.controller;
 import com.kang.community.data.dto.ArticleRequestDto;
 import com.kang.community.data.dto.ArticleResponseDto;
 import com.kang.community.service.CommunityService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,11 +11,12 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/article")
+@RequestMapping(value = "/articles")
 public class ArticleController {
 
     private final CommunityService communityService;
 
+    @Autowired
     public ArticleController(CommunityService communityService) {
         this.communityService = communityService;
     }
