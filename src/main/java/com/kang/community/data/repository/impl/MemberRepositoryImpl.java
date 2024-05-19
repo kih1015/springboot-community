@@ -2,14 +2,14 @@ package com.kang.community.data.repository.impl;
 
 import com.kang.community.data.entity.Member;
 import com.kang.community.data.repository.MemberRepository;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Repository
 public class MemberRepositoryImpl implements MemberRepository {
 
     private final Map<Integer, Member> boardMap = new HashMap<>();

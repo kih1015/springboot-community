@@ -2,7 +2,7 @@ package com.kang.community.data.repository.impl;
 
 import com.kang.community.data.entity.Article;
 import com.kang.community.data.repository.ArticleRepository;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Repository
 public class ArticleRepositoryImpl implements ArticleRepository {
 
     private final Map<Integer, Article> articleMap = new HashMap<>();
