@@ -2,7 +2,7 @@ package com.kang.community.controller;
 
 import com.kang.community.data.dto.ArticleRequestDto;
 import com.kang.community.data.dto.ArticleResponseDto;
-import com.kang.community.service.CommunityService;
+import com.kang.community.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,22 +14,22 @@ import java.util.Map;
 @RequestMapping(value = "/articles")
 public class ArticleController {
 
-    private final CommunityService communityService;
+    private final ArticleService articleService;
 
     @Autowired
-    public ArticleController(CommunityService communityService) {
-        this.communityService = communityService;
+    public ArticleController(ArticleService articleService) {
+        this.articleService = articleService;
     }
 
     @GetMapping()
     public List<ArticleResponseDto> readArticles() {
-        return communityService.readArticles();
+        return articleService.readArticles();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ArticleResponseDto> readArticleById(@PathVariable int id) {
         try {
-            return ResponseEntity.ok(communityService.readArticleById(id));
+            return ResponseEntity.ok(articleService.readArticleById(id));
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
@@ -37,13 +37,13 @@ public class ArticleController {
 
     @PostMapping
     public void createArticle(@RequestBody ArticleRequestDto dto) {
-        communityService.createArticle(dto);
+        articleService.createArticle(dto);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ArticleResponseDto> updateArticleById(@PathVariable int id, @RequestBody Map<String, String> map) {
         try {
-            communityService.updateArticleById(id, map.get("title"), map.get("content"));
+            articleService.updateArticleById(id, map.get("title"), map.get("content"));
             return ResponseEntity.ok().build();
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
@@ -53,7 +53,7 @@ public class ArticleController {
     @DeleteMapping("/{id}")
     public ResponseEntity<ArticleResponseDto> deleteArticleById(@PathVariable int id) {
         try {
-            communityService.deleteArticleById(id);
+            articleService.deleteArticleById(id);
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();

@@ -2,14 +2,12 @@ package com.kang.community.service.impl;
 
 import com.kang.community.data.dto.ArticleRequestDto;
 import com.kang.community.data.dto.ArticleResponseDto;
-import com.kang.community.data.dto.MemberRequestDto;
 import com.kang.community.data.entity.Article;
 import com.kang.community.data.entity.Board;
-import com.kang.community.data.entity.Member;
 import com.kang.community.data.repository.ArticleRepository;
 import com.kang.community.data.repository.BoardRepository;
 import com.kang.community.data.repository.MemberRepository;
-import com.kang.community.service.CommunityService;
+import com.kang.community.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,14 +18,14 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class CommunityServiceImpl implements CommunityService {
+public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository articleRepository;
     private final BoardRepository boardRepository;
     private final MemberRepository memberRepository;
 
     @Autowired
-    public CommunityServiceImpl(ArticleRepository articleRepository, BoardRepository boardRepository, MemberRepository memberRepository) {
+    public ArticleServiceImpl(ArticleRepository articleRepository, BoardRepository boardRepository, MemberRepository memberRepository) {
         this.articleRepository = articleRepository;
         this.boardRepository = boardRepository;
         this.memberRepository = memberRepository;
@@ -96,19 +94,4 @@ public class CommunityServiceImpl implements CommunityService {
     public void deleteArticleById(int id) {
         articleRepository.delete(id);
     }
-
-    public void createMember(MemberRequestDto dto) {
-        Member member = new Member();
-        member.setEmail(dto.getEmail());
-        member.setName(dto.getName());
-        member.setPassword(dto.getPassword());
-        memberRepository.create(member);
-    }
-
-    public void createBoard(String name) {
-        Board board = new Board();
-        board.setName(name);
-        boardRepository.create(board);
-    }
-
 }

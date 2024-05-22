@@ -1,6 +1,6 @@
 package com.kang.community.controller;
 
-import com.kang.community.service.CommunityService;
+import com.kang.community.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +14,11 @@ import java.util.Map;
 @Controller
 public class ViewController {
 
-    private final CommunityService communityService;
+    private final ArticleService articleService;
 
     @Autowired
-    public ViewController(CommunityService communityService) {
-        this.communityService = communityService;
+    public ViewController(ArticleService articleService) {
+        this.articleService = articleService;
     }
 
     @GetMapping("/introduce")
@@ -29,7 +29,7 @@ public class ViewController {
 
     @GetMapping("/posts")
     public String getPosts(Model model) {
-        model.addAttribute("postsMap", communityService.readArticlesOnBoard());
+        model.addAttribute("postsMap", articleService.readArticlesOnBoard());
         return "posts";
     }
 
