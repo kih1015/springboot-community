@@ -2,10 +2,12 @@ package com.kang.community.controller;
 
 import com.kang.community.controller.dto.ArticleCreateRequest;
 import com.kang.community.controller.dto.ArticleResponse;
+import com.kang.community.controller.dto.ArticleUpdateRequest;
 import com.kang.community.service.ArticleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
@@ -20,42 +22,36 @@ public class ArticleController {
     }
 
     @GetMapping()
-    public List<ArticleResponse> readArticles() {
-        return articleService.readArticles();
+    public ResponseEntity<List<ArticleResponse>> getArticles(@RequestParam("boardId") Long boardId) {
+        List<ArticleResponse> articleList = articleService.getAll()
+                .stream()
+                .filter(articleResponse -> articleResponse.board_id().equals(boardId))
+                .toList();
+        return ResponseEntity.ok(articleList);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ArticleResponse> readArticleById(@PathVariable int id) {
-        try {
-            return ResponseEntity.ok(articleService.readArticleById(id));
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<ArticleResponse> getArticleById(@PathVariable Long id) {
+        ArticleResponse rsp = articleService.getById(id);
+        return ResponseEntity.ok(rsp);
     }
 
     @PostMapping
-    public void createArticle(@RequestBody ArticleCreateRequest dto) {
-        articleService.createArticle(dto);
+    public ResponseEntity<Void> createArticle(@RequestBody ArticleCreateRequest req) {
+        ArticleResponse rsp = articleService.create(req);
+        return ResponseEntity.created(URI.create("/articles/" + rsp.id())).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ArticleResponse> updateArticleById(@PathVariable int id, @RequestBody Map<String, String> map) {
-        try {
-            articleService.updateArticleById(id, map.get("title"), map.get("content"));
-            return ResponseEntity.ok().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<ArticleResponse> updateArticle(@PathVariable Long id, @RequestBody ArticleUpdateRequest req) {
+        ArticleResponse rsp = articleService.update(id, req);
+        return ResponseEntity.ok(rsp);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ArticleResponse> deleteArticleById(@PathVariable int id) {
-        try {
-            articleService.deleteArticleById(id);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Void> deleteArticle(@PathVariable Long id) {
+        articleService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
