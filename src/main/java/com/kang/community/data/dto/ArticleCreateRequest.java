@@ -1,42 +1,23 @@
 package com.kang.community.data.dto;
 
-public class ArticleCreateRequest {
+import com.kang.community.data.entity.Article;
 
-    private String title;
-    private String content;
-    private int authorId;
-    private int boardId;
+import java.time.LocalDateTime;
 
-    public String getTitle() {
-        return title;
-    }
+public record ArticleCreateRequest(
+        Long board_id,
+        Long author_id,
+        String title,
+        String content) {
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public int getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
-    }
-
-    public int getBoardId() {
-        return boardId;
-    }
-
-    public void setBoardId(int boardId) {
-        this.boardId = boardId;
+    public Article toArticle() {
+        return new Article.Builder()
+                .setAuthorId(author_id)
+                .setBoardId(board_id)
+                .setTitle(title)
+                .setContent(content)
+                .setCreatedAt(LocalDateTime.now())
+                .build();
     }
 
 }

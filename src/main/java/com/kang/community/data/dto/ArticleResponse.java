@@ -1,44 +1,27 @@
 package com.kang.community.data.dto;
 
-import java.time.Instant;
+import com.kang.community.data.entity.Article;
 
-public class ArticleResponse {
+import java.time.LocalDateTime;
 
-    private String title;
-    private String author;
-    private Instant date;
-    private String content;
+public record ArticleResponse(
+        Long id,
+        Long author_id,
+        Long board_id,
+        String title,
+        String content,
+        LocalDateTime created_date,
+        LocalDateTime modified_date) {
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public Instant getDate() {
-        return date;
-    }
-
-    public void setDate(Instant date) {
-        this.date = date;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+    public static ArticleResponse from(Article article) {
+        return new ArticleResponse(
+                article.getId(),
+                article.getAuthorId(),
+                article.getBoardId(),
+                article.getTitle(),
+                article.getContent(),
+                article.getCreatedAt(),
+                article.getUpdatedAt());
     }
 
 }

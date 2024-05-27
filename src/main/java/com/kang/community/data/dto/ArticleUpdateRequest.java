@@ -1,7 +1,7 @@
 package com.kang.community.data.dto;
 
 public record ArticleUpdateRequest(
-        Long boardId,
+        Long board_id,
         String title,
         String content) {
 }
