@@ -1,5 +1,6 @@
 package com.kang.community.service.impl;
 
+import com.kang.community.controller.dto.BoardResponse;
 import com.kang.community.domain.Board;
 import com.kang.community.repository.BoardRepository;
 import com.kang.community.service.BoardService;
@@ -10,13 +11,12 @@ import org.springframework.stereotype.Service;
 public class BoardServiceImpl implements BoardService {
     private final BoardRepository boardRepository;
 
-    @Autowired
     public BoardServiceImpl(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
-    public void createBoard(String name) {
-        Board board = new Board();
-        board.setName(name);
-        boardRepository.create(board);
+
+    @Override
+    public BoardResponse getById(Long id) {
+        return BoardResponse.from(boardRepository.findById(id));
     }
 }

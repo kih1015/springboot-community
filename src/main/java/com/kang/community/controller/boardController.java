@@ -8,15 +8,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class boardController {
-    private final BoardService boardService;
 
-    @Autowired
-    public boardController(BoardService boardService) {
-        this.boardService = boardService;
-    }
-
-    @PostMapping("/boards")
-    public void createBoard(@RequestBody String name) {
-        boardService.createBoard(name);
-    }
 }
