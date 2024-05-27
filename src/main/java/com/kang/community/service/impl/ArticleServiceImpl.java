@@ -4,7 +4,7 @@ import com.kang.community.data.dto.ArticleCreateRequest;
 import com.kang.community.data.dto.ArticleResponse;
 import com.kang.community.data.dto.ArticleUpdateRequest;
 import com.kang.community.data.entity.Article;
-import com.kang.community.data.repository.ArticleRepository;
+import com.kang.community.repository.ArticleRepository;
 import com.kang.community.service.ArticleService;
 import org.springframework.stereotype.Service;
 

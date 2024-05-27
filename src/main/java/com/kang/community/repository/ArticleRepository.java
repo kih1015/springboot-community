@@ -1,4 +1,4 @@
-package com.kang.community.data.repository;
+package com.kang.community.repository;
 
 import com.kang.community.data.entity.Article;
 

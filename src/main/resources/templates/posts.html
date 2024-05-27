@@ -2,17 +2,14 @@
 <html lang="kor" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>게시글</title>
+    <title>Board Posts</title>
 </head>
 <body>
-<div th:each="entry : ${postsMap}">
-    <div th:text="'============= ' + ${entry.getKey()} + ' ============='"></div>
-    <div th:each="post : ${entry.getValue()}">
-        <h1 th:text="${post.getTitle()}"></h1>
-        <div th:text="${post.getAuthor()} + '|' + ${post.getDate().toString().substring(0, 10)}"></div>
-        <div th:text="${post.getContent()}"></div>
-    </div>
-    <div>======================================</div>
-</div>
+<h1>Board: {boardName}</h1>
+<ul>
+    <li><a href="/articles/{articleId}">Article Title 1</a></li>
+    <li><a href="/articles/{articleId}">Article Title 2</a></li>
+    <!-- More articles -->
+</ul>
 </body>
 </html>

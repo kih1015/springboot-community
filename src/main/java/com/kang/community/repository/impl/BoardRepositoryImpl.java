@@ -1,7 +1,7 @@
-package com.kang.community.data.repository.impl;
+package com.kang.community.repository.impl;
 
 import com.kang.community.data.entity.Board;
-import com.kang.community.data.repository.BoardRepository;
+import com.kang.community.repository.BoardRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
