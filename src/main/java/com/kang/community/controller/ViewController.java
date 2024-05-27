@@ -13,7 +13,6 @@ import java.util.Map;
 
 @Controller
 public class ViewController {
-
     private final ArticleService articleService;
 
     @Autowired
@@ -21,25 +20,9 @@ public class ViewController {
         this.articleService = articleService;
     }
 
-    @GetMapping("/introduce")
-    public String getHello(@RequestParam(name = "name", required = false, defaultValue = "강인화") String name, Model model) {
-        model.addAttribute("name", name);
-        return "hello";
-    }
-
     @GetMapping("/posts")
     public String getPosts(Model model) {
         model.addAttribute("postsMap", articleService.readArticlesOnBoard());
         return "posts";
     }
-
-    @ResponseBody
-    @GetMapping("/json")
-    public Map<String, Object> getJson() {
-        Map<String, Object> user = new HashMap<>();
-        user.put("name", "최준호");
-        user.put("age", 25);
-        return user;
-    }
-
 }

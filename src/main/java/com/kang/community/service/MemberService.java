@@ -1,7 +1,7 @@
 package com.kang.community.service;
 
-import com.kang.community.data.dto.MemberRequestDto;
+import com.kang.community.data.dto.MemberRequest;
 
 public interface MemberService {
-    void createMember(MemberRequestDto dto);
+    void createMember(MemberRequest dto);
 }

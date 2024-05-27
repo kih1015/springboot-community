@@ -1,6 +1,6 @@
 package com.kang.community.controller;
 
-import com.kang.community.data.dto.MemberRequestDto;
+import com.kang.community.data.dto.MemberRequest;
 import com.kang.community.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +17,7 @@ public class MemberController {
     }
 
     @PostMapping("/members")
-    public void createMember(@RequestBody MemberRequestDto dto) {
+    public void createMember(@RequestBody MemberRequest dto) {
         memberService.createMember(dto);
     }
 }

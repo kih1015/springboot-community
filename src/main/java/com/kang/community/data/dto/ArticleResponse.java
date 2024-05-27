@@ -2,7 +2,7 @@ package com.kang.community.data.dto;
 
 import java.time.Instant;
 
-public class ArticleResponseDto {
+public class ArticleResponse {
 
     private String title;
     private String author;

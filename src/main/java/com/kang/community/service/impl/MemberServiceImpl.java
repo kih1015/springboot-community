@@ -1,6 +1,6 @@
 package com.kang.community.service.impl;
 
-import com.kang.community.data.dto.MemberRequestDto;
+import com.kang.community.data.dto.MemberRequest;
 import com.kang.community.data.entity.Member;
 import com.kang.community.data.repository.MemberRepository;
 import com.kang.community.service.MemberService;
@@ -15,7 +15,7 @@ public class MemberServiceImpl implements MemberService {
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
-    public void createMember(MemberRequestDto dto) {
+    public void createMember(MemberRequest dto) {
         Member member = new Member();
         member.setEmail(dto.getEmail());
         member.setName(dto.getName());

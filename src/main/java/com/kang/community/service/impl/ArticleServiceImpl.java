@@ -1,7 +1,7 @@
 package com.kang.community.service.impl;
 
-import com.kang.community.data.dto.ArticleRequestDto;
-import com.kang.community.data.dto.ArticleResponseDto;
+import com.kang.community.data.dto.ArticleCreateRequest;
+import com.kang.community.data.dto.ArticleResponse;
 import com.kang.community.data.entity.Article;
 import com.kang.community.data.entity.Board;
 import com.kang.community.data.repository.ArticleRepository;
@@ -31,14 +31,14 @@ public class ArticleServiceImpl implements ArticleService {
         this.memberRepository = memberRepository;
     }
 
-    public Map<String, List<ArticleResponseDto>> readArticlesOnBoard() {
-        Map<String, List<ArticleResponseDto>> map = new HashMap<>();
+    public Map<String, List<ArticleResponse>> readArticlesOnBoard() {
+        Map<String, List<ArticleResponse>> map = new HashMap<>();
         for (Board board : boardRepository.readAll()) {
             map.put(board.getName(), new ArrayList<>());
         }
         for (Article article : articleRepository.readAll()) {
             String key = boardRepository.readById(article.getBoardId()).getName();
-            ArticleResponseDto dto = new ArticleResponseDto();
+            ArticleResponse dto = new ArticleResponse();
             dto.setTitle(article.getTitle());
             dto.setAuthor(memberRepository.readById(article.getMemberId()).getName());
             dto.setDate(article.getCreatedAt());
@@ -48,10 +48,10 @@ public class ArticleServiceImpl implements ArticleService {
         return map;
     }
 
-    public List<ArticleResponseDto> readArticles() {
-        List<ArticleResponseDto> dtoList = new ArrayList<>();
+    public List<ArticleResponse> readArticles() {
+        List<ArticleResponse> dtoList = new ArrayList<>();
         for (Article article : articleRepository.readAll()) {
-            ArticleResponseDto dto = new ArticleResponseDto();
+            ArticleResponse dto = new ArticleResponse();
             dto.setTitle(article.getTitle());
             dto.setAuthor(memberRepository.readById(article.getMemberId()).getName());
             dto.setDate(article.getCreatedAt());
@@ -61,8 +61,8 @@ public class ArticleServiceImpl implements ArticleService {
         return dtoList;
     }
 
-    public ArticleResponseDto readArticleById(int id) {
-        ArticleResponseDto dto = new ArticleResponseDto();
+    public ArticleResponse readArticleById(int id) {
+        ArticleResponse dto = new ArticleResponse();
         Article article = articleRepository.readById(id);
         dto.setTitle(article.getTitle());
         dto.setAuthor(memberRepository.readById(article.getMemberId()).getName());
@@ -71,7 +71,7 @@ public class ArticleServiceImpl implements ArticleService {
         return dto;
     }
 
-    public void createArticle(ArticleRequestDto dto) {
+    public void createArticle(ArticleCreateRequest dto) {
         Article article = new Article();
         article.setMemberId(dto.getAuthorId());
         article.setBoardId(dto.getBoardId());

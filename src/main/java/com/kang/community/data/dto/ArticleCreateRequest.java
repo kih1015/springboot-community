@@ -1,6 +1,6 @@
 package com.kang.community.data.dto;
 
-public class ArticleRequestDto {
+public class ArticleCreateRequest {
 
     private String title;
     private String content;

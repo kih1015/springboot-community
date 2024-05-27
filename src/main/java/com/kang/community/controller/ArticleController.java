@@ -1,7 +1,7 @@
 package com.kang.community.controller;
 
-import com.kang.community.data.dto.ArticleRequestDto;
-import com.kang.community.data.dto.ArticleResponseDto;
+import com.kang.community.data.dto.ArticleCreateRequest;
+import com.kang.community.data.dto.ArticleResponse;
 import com.kang.community.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,12 +22,12 @@ public class ArticleController {
     }
 
     @GetMapping()
-    public List<ArticleResponseDto> readArticles() {
+    public List<ArticleResponse> readArticles() {
         return articleService.readArticles();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ArticleResponseDto> readArticleById(@PathVariable int id) {
+    public ResponseEntity<ArticleResponse> readArticleById(@PathVariable int id) {
         try {
             return ResponseEntity.ok(articleService.readArticleById(id));
         } catch (RuntimeException e) {
@@ -36,12 +36,12 @@ public class ArticleController {
     }
 
     @PostMapping
-    public void createArticle(@RequestBody ArticleRequestDto dto) {
+    public void createArticle(@RequestBody ArticleCreateRequest dto) {
         articleService.createArticle(dto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ArticleResponseDto> updateArticleById(@PathVariable int id, @RequestBody Map<String, String> map) {
+    public ResponseEntity<ArticleResponse> updateArticleById(@PathVariable int id, @RequestBody Map<String, String> map) {
         try {
             articleService.updateArticleById(id, map.get("title"), map.get("content"));
             return ResponseEntity.ok().build();
@@ -51,7 +51,7 @@ public class ArticleController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ArticleResponseDto> deleteArticleById(@PathVariable int id) {
+    public ResponseEntity<ArticleResponse> deleteArticleById(@PathVariable int id) {
         try {
             articleService.deleteArticleById(id);
             return ResponseEntity.noContent().build();

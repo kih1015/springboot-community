@@ -1,6 +1,6 @@
 package com.kang.community.data.dto;
 
-public class MemberRequestDto {
+public class MemberRequest {
 
     private String name;
     private String email;
