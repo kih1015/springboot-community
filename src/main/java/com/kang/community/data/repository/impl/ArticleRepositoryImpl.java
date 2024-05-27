@@ -9,11 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class ArticleRepositoryImpl implements ArticleRepository {
@@ -24,6 +20,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Override
     public List<Article> findAll() {
         return jdbcTemplate.query(
                 "select * from article",
@@ -38,6 +35,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
                         .build());
     }
 
+    @Override
     public Article findById(Long id) {
         return jdbcTemplate.queryForObject(
                 "select * from article where id = ?",
@@ -52,6 +50,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
                         .build(), id);
     }
 
+    @Override
     public Article save(Article article) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(con -> {
@@ -68,6 +67,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         return findById(keyHolder.getKey().longValue());
     }
 
+    @Override
     public Article update(Long id, Article article) {
         jdbcTemplate.update(
                 "update article set board_id = ?, title = ?, content = ?, modified_date = ? where id = ?",
@@ -75,6 +75,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         return findById(article.getId());
     }
 
+    @Override
     public void delete(Long id) {
         jdbcTemplate.update("delete from article where id = ?", id);
     }

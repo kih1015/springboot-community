@@ -2,96 +2,49 @@ package com.kang.community.service.impl;
 
 import com.kang.community.data.dto.ArticleCreateRequest;
 import com.kang.community.data.dto.ArticleResponse;
+import com.kang.community.data.dto.ArticleUpdateRequest;
 import com.kang.community.data.entity.Article;
-import com.kang.community.data.entity.Board;
 import com.kang.community.data.repository.ArticleRepository;
-import com.kang.community.data.repository.BoardRepository;
-import com.kang.community.data.repository.MemberRepository;
 import com.kang.community.service.ArticleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository articleRepository;
-    private final BoardRepository boardRepository;
-    private final MemberRepository memberRepository;
 
-    @Autowired
-    public ArticleServiceImpl(ArticleRepository articleRepository, BoardRepository boardRepository, MemberRepository memberRepository) {
+    public ArticleServiceImpl(ArticleRepository articleRepository) {
         this.articleRepository = articleRepository;
-        this.boardRepository = boardRepository;
-        this.memberRepository = memberRepository;
     }
 
-    public Map<String, List<ArticleResponse>> readArticlesOnBoard() {
-        Map<String, List<ArticleResponse>> map = new HashMap<>();
-        for (Board board : boardRepository.readAll()) {
-            map.put(board.getName(), new ArrayList<>());
-        }
-        for (Article article : articleRepository.readAll()) {
-            String key = boardRepository.readById(article.getBoardId()).getName();
-            ArticleResponse dto = new ArticleResponse();
-            dto.setTitle(article.getTitle());
-            dto.setAuthor(memberRepository.readById(article.getMemberId()).getName());
-            dto.setDate(article.getCreatedAt());
-            dto.setContent(article.getContent());
-            map.get(key).add(dto);
-        }
-        return map;
+    @Override
+    public List<ArticleResponse> getAll() {
+        return articleRepository.findAll().stream().map((ArticleResponse::from)).toList();
     }
 
-    public List<ArticleResponse> readArticles() {
-        List<ArticleResponse> dtoList = new ArrayList<>();
-        for (Article article : articleRepository.readAll()) {
-            ArticleResponse dto = new ArticleResponse();
-            dto.setTitle(article.getTitle());
-            dto.setAuthor(memberRepository.readById(article.getMemberId()).getName());
-            dto.setDate(article.getCreatedAt());
-            dto.setContent(article.getContent());
-            dtoList.add(dto);
-        }
-        return dtoList;
+    @Override
+    public ArticleResponse getById(Long id) {
+        return ArticleResponse.from(articleRepository.findById(id));
     }
 
-    public ArticleResponse readArticleById(int id) {
-        ArticleResponse dto = new ArticleResponse();
-        Article article = articleRepository.readById(id);
-        dto.setTitle(article.getTitle());
-        dto.setAuthor(memberRepository.readById(article.getMemberId()).getName());
-        dto.setDate(article.getCreatedAt());
-        dto.setContent(article.getContent());
-        return dto;
+    @Override
+    public ArticleResponse create(ArticleCreateRequest req) {
+        Article created = articleRepository.save(req.toArticle());
+        return ArticleResponse.from(created);
     }
 
-    public void createArticle(ArticleCreateRequest dto) {
-        Article article = new Article();
-        article.setMemberId(dto.getAuthorId());
-        article.setBoardId(dto.getBoardId());
-        article.setTitle(dto.getTitle());
-        article.setContent(dto.getContent());
-        article.setCreatedAt(Instant.now());
-        article.setUpdatedAt(null);
-        articleRepository.create(article);
+    @Override
+    public ArticleResponse update(Long id, ArticleUpdateRequest req) {
+        Article article = articleRepository.findById(id);
+        article.update(req.board_id(), req.title(), req.content());
+        Article updated = articleRepository.update(id, article);
+        return ArticleResponse.from(updated);
     }
 
-    public void updateArticleById(int id, String title, String content) {
-        if (title != null) {
-            articleRepository.updateTitleById(id, title);
-        }
-        if (content != null) {
-            articleRepository.updateContentById(id, content);
-        }
-    }
-
-    public void deleteArticleById(int id) {
+    @Override
+    public void delete(Long id) {
         articleRepository.delete(id);
     }
 }
