@@ -1,24 +1,10 @@
-package com.kang.community.data.entity;
+package com.kang.community.controller.dto;
 
-public class Member {
+public class MemberRequest {
 
-    private int id;
     private String name;
     private String email;
     private String password;
-    private static int idCnt = 1;
-
-    public Member() {
-        id = idCnt++;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

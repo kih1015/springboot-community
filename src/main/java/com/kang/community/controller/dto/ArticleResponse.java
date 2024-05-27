@@ -1,6 +1,6 @@
-package com.kang.community.data.dto;
+package com.kang.community.controller.dto;
 
-import com.kang.community.data.entity.Article;
+import com.kang.community.domain.Article;
 
 import java.time.LocalDateTime;
 

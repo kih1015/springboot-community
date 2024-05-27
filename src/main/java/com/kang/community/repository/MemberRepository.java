@@ -1,6 +1,6 @@
 package com.kang.community.repository;
 
-import com.kang.community.data.entity.Member;
+import com.kang.community.domain.Member;
 
 import java.util.List;
 

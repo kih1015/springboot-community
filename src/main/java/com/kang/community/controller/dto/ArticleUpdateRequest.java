@@ -1,4 +1,4 @@
-package com.kang.community.data.dto;
+package com.kang.community.controller.dto;
 
 public record ArticleUpdateRequest(
         Long board_id,

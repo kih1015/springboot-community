@@ -1,4 +1,4 @@
-package com.kang.community.data.entity;
+package com.kang.community.domain;
 
 public class Board {
 

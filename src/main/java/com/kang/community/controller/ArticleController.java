@@ -1,9 +1,8 @@
 package com.kang.community.controller;
 
-import com.kang.community.data.dto.ArticleCreateRequest;
-import com.kang.community.data.dto.ArticleResponse;
+import com.kang.community.controller.dto.ArticleCreateRequest;
+import com.kang.community.controller.dto.ArticleResponse;
 import com.kang.community.service.ArticleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

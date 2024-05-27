@@ -1,10 +1,24 @@
-package com.kang.community.data.dto;
+package com.kang.community.domain;
 
-public class MemberRequest {
+public class Member {
 
+    private int id;
     private String name;
     private String email;
     private String password;
+    private static int idCnt = 1;
+
+    public Member() {
+        id = idCnt++;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

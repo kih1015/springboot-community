@@ -1,8 +1,8 @@
 package com.kang.community.service;
 
-import com.kang.community.data.dto.ArticleCreateRequest;
-import com.kang.community.data.dto.ArticleResponse;
-import com.kang.community.data.dto.ArticleUpdateRequest;
+import com.kang.community.controller.dto.ArticleCreateRequest;
+import com.kang.community.controller.dto.ArticleResponse;
+import com.kang.community.controller.dto.ArticleUpdateRequest;
 
 import java.util.List;
 

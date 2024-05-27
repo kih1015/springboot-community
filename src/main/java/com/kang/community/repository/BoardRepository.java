@@ -1,14 +1,15 @@
 package com.kang.community.repository;
 
-import com.kang.community.data.entity.Board;
+import com.kang.community.domain.Article;
 
 import java.util.List;
 
 public interface BoardRepository {
 
-    List<Board> readAll();
-    Board readById(int id);
-    void create(Board board);
-    void delete(int id);
+    List<Article> findAll();
+    Article findById(Long id);
+    Article save(Article article);
+    Article update(Long id, Article article);
+    void delete(Long id);
 
 }

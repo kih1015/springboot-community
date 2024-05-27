@@ -1,6 +1,6 @@
 package com.kang.community.repository.impl;
 
-import com.kang.community.data.entity.Article;
+import com.kang.community.domain.Article;
 import com.kang.community.repository.ArticleRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;

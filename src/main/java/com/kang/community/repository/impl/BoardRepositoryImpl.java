@@ -1,6 +1,6 @@
 package com.kang.community.repository.impl;
 
-import com.kang.community.data.entity.Board;
+import com.kang.community.domain.Board;
 import com.kang.community.repository.BoardRepository;
 import org.springframework.stereotype.Repository;
 
