@@ -1,75 +1,113 @@
 package com.kang.community.data.entity;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 public class Article {
 
-    private int id;
-    private int memberId;
-    private int boardId;
+    private Long id;
+    private Long authorId;
+    private Long boardId;
     private String title;
     private String content;
-    private Instant createdAt;
-    private Instant UpdatedAt;
-    private static int idCnt = 1;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    public static class Builder {
 
-    public Article() {
-        id = idCnt++;
+        private Long id;
+        private Long authorId;
+        private Long boardId;
+        private String title;
+        private String content;
+        private LocalDateTime createdAt;
+        private LocalDateTime updatedAt;
+
+        public Builder setId(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder setAuthorId(Long authorId) {
+            this.authorId = authorId;
+            return this;
+        }
+
+        public Builder setBoardId(Long boardId) {
+            this.boardId = boardId;
+            return this;
+        }
+
+        public Builder setTitle(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public Builder setContent(String content) {
+            this.content = content;
+            return this;
+        }
+
+        public Builder setCreatedAt(LocalDateTime createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder setUpdatedAt(LocalDateTime updatedAt) {
+            this.updatedAt = updatedAt;
+            return this;
+        }
+
+        public Article build() {
+            return new Article(this);
+        }
+
     }
 
-    public int getId() {
+    public Article() {
+    }
+
+    private Article(Builder builder) {
+        this.id = builder.id;
+        this.authorId = builder.authorId;
+        this.boardId = builder.boardId;
+        this.title = builder.title;
+        this.content = builder.content;
+        this.createdAt = builder.createdAt;
+        this.updatedAt = builder.updatedAt;
+    }
+
+    public void update(Long boardId, String title, String content) {
+        this.boardId = boardId;
+        this.title = title;
+        this.content = content;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Long getAuthorId() {
+        return authorId;
     }
 
-    public int getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(int memberId) {
-        this.memberId = memberId;
-    }
-
-    public int getBoardId() {
+    public Long getBoardId() {
         return boardId;
-    }
-
-    public void setBoardId(int boardId) {
-        this.boardId = boardId;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getContent() {
         return content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Instant getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Instant createdAt) {
-        this.createdAt = createdAt;
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
-    public Instant getUpdatedAt() {
-        return UpdatedAt;
-    }
-
-    public void setUpdatedAt(Instant updatedAt) {
-        UpdatedAt = updatedAt;
-    }
 }
