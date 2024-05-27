@@ -2,28 +2,20 @@ package com.kang.community.domain;
 
 public class Board {
 
-    int id;
-    String name;
-    private static int idCnt = 1;
+    private Long id;
+    private String name;
 
-    public Board() {
-        id = idCnt++;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public Board(Long id, String name) {
         this.id = id;
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 }
