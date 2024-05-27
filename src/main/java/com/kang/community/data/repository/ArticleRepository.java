@@ -6,11 +6,10 @@ import java.util.List;
 
 public interface ArticleRepository {
 
-    List<Article> readAll();
-    Article readById(int id);
-    void create(Article article);
-    void updateTitleById(int id, String title);
-    void updateContentById(int id, String content);
-    void delete(int id);
+    List<Article> findAll();
+    Article findById(Long id);
+    Article save(Article article);
+    Article update(Long id, Article article);
+    void delete(Long id);
 
 }
