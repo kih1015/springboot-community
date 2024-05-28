@@ -1,6 +1,8 @@
 spring:
+  application:
+    name: community
   datasource:
     url: jdbc:mysql://localhost:3306/bcsd?serverTimezone=Asia/Seoul
     username: root
-    password: !@#k981015
+    password: "!@#k981015"
     driver-class-name: com.mysql.cj.jdbc.Driver
