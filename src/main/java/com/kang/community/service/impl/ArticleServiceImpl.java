@@ -7,6 +7,7 @@ import com.kang.community.domain.Article;
 import com.kang.community.repository.ArticleRepository;
 import com.kang.community.service.ArticleService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class ArticleServiceImpl implements ArticleService {
         return ArticleResponse.from(created);
     }
 
+    @Transactional
     @Override
     public ArticleResponse update(Long id, ArticleUpdateRequest req) {
         Article article = articleRepository.findById(id);
