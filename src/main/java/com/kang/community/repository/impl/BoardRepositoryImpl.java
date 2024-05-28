@@ -24,7 +24,7 @@ public class BoardRepositoryImpl implements BoardRepository {
     public Board findById(Long id) {
         return jdbcTemplate.queryForObject(
                 "select * from board where id = ?",
-                (rs, row) -> new Board(rs.getLong("id"), rs.getString("name")));
+                (rs, row) -> new Board(rs.getLong("id"), rs.getString("name")), id);
     }
 
 }
