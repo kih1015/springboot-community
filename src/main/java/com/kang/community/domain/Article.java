@@ -62,9 +62,6 @@ public class Article {
 
     }
 
-    public Article() {
-    }
-
     private Article(Builder builder) {
         this.id = builder.id;
         this.authorId = builder.authorId;
