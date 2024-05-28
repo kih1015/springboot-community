@@ -7,8 +7,9 @@
 <body>
 <h1 th:text="'Board: ' + ${boardName}"></h1>
 <ul>
-    <li th:each="article : ${articleList}"><a th:href="'articles/' + ${article.id()}"
-                                              th:text="${article.title()}"></a></li>
+    <li th:each="article : ${articleList}">
+        <a th:href="'articles/' + ${article.id()}" th:text="${article.title()}"></a>
+    </li>
 </ul>
 </body>
 </html>
