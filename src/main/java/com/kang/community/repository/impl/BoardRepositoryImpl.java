@@ -1,16 +1,9 @@
 package com.kang.community.repository.impl;
 
-import com.kang.community.controller.dto.BoardResponse;
-import com.kang.community.domain.Article;
 import com.kang.community.domain.Board;
 import com.kang.community.repository.BoardRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Repository
 public class BoardRepositoryImpl implements BoardRepository {
