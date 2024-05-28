@@ -79,7 +79,6 @@ public class Article {
         this.boardId = boardId;
         this.title = title;
         this.content = content;
-        this.updatedAt = LocalDateTime.now();
     }
 
     public Long getId() {
