@@ -8,7 +8,6 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
-import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
@@ -55,13 +54,12 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(con -> {
             PreparedStatement ps = con.prepareStatement(
-                    "insert into article (author_id, board_id, title, content, created_date) value (?, ?, ?, ?, ?)",
+                    "insert into article (author_id, board_id, title, content) value (?, ?, ?, ?)",
                     new String[]{"id"});
             ps.setLong(1, article.getAuthorId());
             ps.setLong(2, article.getBoardId());
             ps.setString(3, article.getTitle());
             ps.setString(4, article.getContent());
-            ps.setTimestamp(5, Timestamp.valueOf(article.getCreatedAt()));
             return ps;
         }, keyHolder);
         return findById(keyHolder.getKey().longValue());
@@ -70,8 +68,8 @@ public class ArticleRepositoryImpl implements ArticleRepository {
     @Override
     public Article update(Long id, Article article) {
         jdbcTemplate.update(
-                "update article set board_id = ?, title = ?, content = ?, modified_date = ? where id = ?",
-                article.getBoardId(), article.getTitle(), article.getContent(), article.getUpdatedAt(), article.getId());
+                "update article set board_id = ?, title = ?, content = ? where id = ?",
+                article.getBoardId(), article.getTitle(), article.getContent(), article.getId());
         return findById(article.getId());
     }
 
